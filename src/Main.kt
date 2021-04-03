@@ -1,22 +1,33 @@
 fun main() {
-    print(nNumber(-1))
+
+    val p = Point(3.0, 8.0)
+
+ p.xSymmetry()
+    print(p)
 }
 
-fun nNumber(n: Int): Int {
-    if (n==0) return 0
-    var sumNumber = n
-    var multNumber = n
-    var sum = 0
-    var multiply = 1
-    while (sumNumber != 0) {
-        val r = sumNumber % 10
-        sum += r
-        sumNumber /= 10
+class Point(private val x: Double, private var y: Double) {
+    override fun toString(): String {
+        return "Point(x=$x, y=$y)"
     }
-    while (multNumber != 0) {
-        val r = multNumber % 10
-        multiply *= r
-        multNumber /= 10
+
+    override fun equals(other: Any?): Boolean {
+        if (other == null ||
+                other !is Point ||
+                x != other.x || y != other.y) return false
+
+        return true
     }
-    return multiply- sum
+
+    override fun hashCode(): Int {
+        var result = x.hashCode()
+        result = 31 * result + y.hashCode()
+        return result
+    }
+
+    fun xSymmetry() {
+        y *= -1
+    }
+
 }
+
