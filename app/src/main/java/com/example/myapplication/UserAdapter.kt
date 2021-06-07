@@ -6,17 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.api.dto.User
+import com.example.myapplication.api.dto.UserData
 
 class UserAdapter(private val listener: UserClickListener) :
     RecyclerView.Adapter<UserAdapter.Holder>() {
-    private var list: MutableList<User> = mutableListOf()
+    private var list: MutableList<UserData> = mutableListOf()
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val user: User = list[position]
+        val user: UserData = list[position]
         holder.mail.text = user.email
-        holder.firstName.text = user.firstName.toString()
-        holder.lastName.text = user.lastName.toString()
+        holder.firstName.text = user.first_name
+        holder.lastName.text = user.last_name.toString()
 
     }
 
@@ -31,23 +31,16 @@ class UserAdapter(private val listener: UserClickListener) :
         return list.size
     }
 
-    fun addUser(user: User) {
-        list.add(user)
-        notifyDataSetChanged()
-    }
 
-    fun updateAdapter(newList: List<User>) {
+
+    fun updateAdapter(newList: List<UserData>) {
         list.clear()
         list.addAll(newList)
         notifyDataSetChanged()
     }
 
-    fun reset() {
-        list.clear()
-        notifyDataSetChanged()
-    }
 
-    fun getSelectedUser(position: Int): User {
+    fun getSelectedUser(position: Int): UserData {
         return list[position]
     }
 

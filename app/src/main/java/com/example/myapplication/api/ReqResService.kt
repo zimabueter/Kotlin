@@ -1,18 +1,15 @@
 package com.example.myapplication.api
 
-import com.example.myapplication.api.dto.User
+import com.example.myapplication.api.dto.DataResponse
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 
-interface   ReqResService {
+interface ReqResService {
 
     @GET("users")
-    fun getUsers(@Query("page") page: Int): Call<List<User>>
+    fun getUsers(@Query("page") page: Int): Call<DataResponse>
 
-    @GET("users/{userId}")
-    fun getUser(@Path("userId") userId: Long): Call<User>
 
 }
